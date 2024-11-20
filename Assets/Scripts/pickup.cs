@@ -11,32 +11,32 @@ public class pickup : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(pt == pickupType.coin)
-        {
-            if(collision.gameObject.tag == "Player")
-            {
-                GameManager.instance.IncrementCoinCount();
-           
-                Instantiate(PickupEffect, transform.position, Quaternion.identity);
+        //if(pt == pickupType.coin)
+        //{
+        //if(collision.gameObject.tag == "Player")
+        //{
+        GameManager.instance.IncrementCoinCount();
 
-                Destroy(this.gameObject,0.2f);
+        //Instantiate(PickupEffect, transform.position, Quaternion.identity);
+
+        Destroy(this.gameObject,0.2f);
                 
-            }
+            //}
             
-        }
+        //}
 
-        if (pt == pickupType.gem)
-        {
-            if (collision.gameObject.tag == "Player")
-            {
-                GameManager.instance.IncrementGemCount();
+        //if (pt == pickupType.gem)
+        //{
+        //    if (collision.gameObject.tag == "Player")
+        //    {
+        //        GameManager.instance.IncrementGemCount();
             
-                Instantiate(PickupEffect, transform.position, Quaternion.identity);
+        //        Instantiate(PickupEffect, transform.position, Quaternion.identity);
 
-                Destroy(this.gameObject, 0.2f);
+        //        Destroy(this.gameObject, 0.2f);
 
-            }
+        //    }
 
-        }
+        //}
     }
 }

@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text coinText;
     [SerializeField] public PlayerController playerController;
 
-    private int coinCount = 0;
-    private int gemCount = 0;
+    public int coinCount = 0;
+    public int gemCount = 0;
     private bool isGameOver = false;
     private Vector3 playerPosition;
 
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private int totalCoins = 0;
 
-    private void Awake()
+    public void Awake()
     {
         // Asegúrate de que solo haya una instancia de GameManager
         if (instance == null)
@@ -70,13 +70,13 @@ public class GameManager : MonoBehaviour
     public void IncrementCoinCount()
     {
         coinCount++;
-        UpdateGUI();
+        //UpdateGUI();
     }
 
     public void IncrementGemCount()
     {
         gemCount++;
-        UpdateGUI();
+        //UpdateGUI();
     }
 
     private void UpdateGUI()
@@ -91,22 +91,22 @@ public class GameManager : MonoBehaviour
     {
         if (!isGameOver)
         {
-            // Disable Mobile Controls
-            UIManager.instance.DisableMobileControls();
-            // Initiate screen fade
-            UIManager.instance.fadeToBlack = true;
+            //// Disable Mobile Controls
+            //UIManager.instance.DisableMobileControls();
+            //// Initiate screen fade
+            //UIManager.instance.fadeToBlack = true;
 
             // Disable the player object
             playerController.gameObject.SetActive(false);
 
-            // Start death coroutine to wait and then respawn the player
-            StartCoroutine(DeathCoroutine());
+            //// Start death coroutine to wait and then respawn the player
+            //StartCoroutine(DeathCoroutine());
 
-            // Update game state
-            isGameOver = true;
+            //// Update game state
+            //isGameOver = true;
 
-            // Log death message
-            Debug.Log("Died");
+            //// Log death message
+            //Debug.Log("Died");
         }
     }
 

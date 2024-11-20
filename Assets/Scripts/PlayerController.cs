@@ -16,30 +16,30 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundCheck;
 
-    private Rigidbody2D rb;
-    private bool isGroundedBool = false;
-    private bool canDoubleJump = false;
+    public Rigidbody2D rb;
+    public bool isGroundedBool = false;
+    public bool canDoubleJump = false;
 
     public Animator playeranim;
 
     public Controls controlmode;
    
 
-    private float moveX;
+    public float moveX;
     public bool isPaused = false;
 
     public ParticleSystem footsteps;
-    private ParticleSystem.EmissionModule footEmissions;
+    public ParticleSystem.EmissionModule footEmissions;
 
     public ParticleSystem ImpactEffect;
-    private bool wasonGround;
+    public bool wasonGround;
 
 
    // public GameObject projectile;
    // public Transform firePoint;
 
     public float fireRate = 0.5f; // Time between each shot
-    private float nextFireTime = 0f; // Time of the next allowed shot
+    public float nextFireTime = 0f; // Time of the next allowed shot
 
 
     
@@ -47,83 +47,83 @@ public class PlayerController : MonoBehaviour
 
 
 
-    private void Start()
+    public void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        footEmissions = footsteps.emission;
+        //rb = GetComponent<Rigidbody2D>();
+        //footEmissions = footsteps.emission;
 
-        if (controlmode == Controls.mobile)
-        {
-            UIManager.instance.EnableMobileControls();
-        }
+        //if (controlmode == Controls.mobile)
+        //{
+        //    UIManager.instance.EnableMobileControls();
+        //}
 
 
     }
 
-    private void Update()
+    public void Update()
     {
-        isGroundedBool = IsGrounded();
+        //isGroundedBool = IsGrounded();
 
-        if (isGroundedBool)
-        {
-            canDoubleJump = true; // Reset double jump when grounded
+        //if (isGroundedBool)
+        //{
+        //    canDoubleJump = true; // Reset double jump when grounded
 
-            if (controlmode == Controls.pc)
-            {
-                moveX = Input.GetAxis("Horizontal");
-            }
+        //    if (controlmode == Controls.pc)
+        //    {
+        //        moveX = Input.GetAxis("Horizontal");
+        //    }
 
 
-            if (Input.GetButtonDown("Jump"))
-            {
-                Jump(jumpForce);
-            }
-        }
-        else
-        {
-            if (canDoubleJump && Input.GetButtonDown("Jump"))
-            {
-                Jump(doubleJumpForce);
-                canDoubleJump = false; // Disable double jump until grounded again
-            }
-        }
+        //    if (Input.GetButtonDown("Jump"))
+        //    {
+        //        Jump(jumpForce);
+        //    }
+        //}
+        //else
+        //{
+        //    if (canDoubleJump && Input.GetButtonDown("Jump"))
+        //    {
+        //        Jump(doubleJumpForce);
+        //        canDoubleJump = false; // Disable double jump until grounded again
+        //    }
+        //}
 
-        if (!isPaused)
-        {
-            // Calculate rotation angle based on mouse position
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 lookDirection = mousePosition - transform.position;
-            float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        //if (!isPaused)
+        //{
+        //    // Calculate rotation angle based on mouse position
+        //    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //    Vector3 lookDirection = mousePosition - transform.position;
+        //    float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-            // ... (your existing code for rotation)
+        //    // ... (your existing code for rotation)
 
-            // Handle shooting
-            if (controlmode == Controls.pc && Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
-            {
-                Shoot();
-                nextFireTime = Time.time + 1f / fireRate; // Set the next allowed fire time
-            }
-        }
-        SetAnimations();
+        //    // Handle shooting
+        //    if (controlmode == Controls.pc && Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
+        //    {
+        //        Shoot();
+        //        nextFireTime = Time.time + 1f / fireRate; // Set the next allowed fire time
+        //    }
+        //}
+        //SetAnimations();
 
-        if (moveX != 0)
-        {
-            FlipSprite(moveX);
-        }
+        //if (moveX != 0)
+        //{
+        //    FlipSprite(moveX);
+        //}
 
-        //impactEffect
+        ////impactEffect
 
-        if(!wasonGround && isGroundedBool)
-        {
-            ImpactEffect.gameObject.SetActive(true);
-            ImpactEffect.Stop();
-            ImpactEffect.transform.position = new Vector2(footsteps.transform.position.x,footsteps.transform.position.y-0.2f);
-            ImpactEffect.Play();
-        }
+        //if (!wasonGround && isGroundedBool)
+        //{
+        //    ImpactEffect.gameObject.SetActive(true);
+        //    ImpactEffect.Stop();
+        //    ImpactEffect.transform.position = new Vector2(footsteps.transform.position.x, footsteps.transform.position.y - 0.2f);
+        //    ImpactEffect.Play();
+        //}
 
-        wasonGround = isGroundedBool;
+        //wasonGround = isGroundedBool;
 
-        
+
     }
     public void SetAnimations()
     {
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
        
     }
 
-    private void FlipSprite(float direction)
+    public void FlipSprite(float direction)
     {
         if (direction > 0)
         {
@@ -155,34 +155,34 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         // Player movement
-        if (controlmode == Controls.pc)
-        {
-            moveX = Input.GetAxis("Horizontal");
-        }
+    //    if (controlmode == Controls.pc)
+    //    {
+    //        moveX = Input.GetAxis("Horizontal");
+    //    }
        
 
 
-        rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
+    //    rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
     }
 
-    private void Jump(float jumpForce)
+    public void Jump(float jumpForce)
     {
         rb.velocity = new Vector2(rb.velocity.x, 0); // Zero out vertical velocity
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         playeranim.SetTrigger("jump");
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         float rayLength = 0.25f;
         Vector2 rayOrigin = new Vector2(groundCheck.transform.position.x, groundCheck.transform.position.y - 0.1f);
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, rayLength, groundLayer);
         return hit.collider != null;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "killzone")
         {
